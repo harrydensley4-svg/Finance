@@ -1,0 +1,7 @@
+Week 2 Workshop 1 (2.1) 12/09/2026
+- dicussed linking accounts to transactions
+- ensured that a transaction can only be cancelled if it has a pending status
+- tried to call instances that would break the code to find problem areas
+
+- This improved my code as it ensured that it was more robust
+

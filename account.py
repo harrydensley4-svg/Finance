@@ -1,12 +1,12 @@
-#Account
-#Attributes: accountID, accountType, balance, status(?)
-#Methods: deposit(), withdraw(), transfer(), close_account()
+# Account
+# Attributes: account_ID, account_type, balance, status(?)
+# Methods: deposit(), withdraw(), transfer(), close_account()
 
 class Account:
-    def __init__(self, accountID, clientID, accountType, balance, is_active=True):
-        self.accountID = accountID
-        self.clientID = clientID
-        self.accountType = accountType
+    def __init__(self, account_ID, client_ID, account_type, balance, is_active=True):
+        self.account_ID = account_ID
+        self.client_ID = client_ID
+        self.account_type = account_type
         self.balance = balance
         self.is_active = is_active
 
@@ -29,3 +29,9 @@ class Account:
         else:
             self.is_active = True
             print('Active')
+
+    def __str__(self):
+        return f'The account {self.account_ID} is a {self.account_type} account with a balance of ${self.balance}'
+
+    def __repr__(self):
+        return f'Account(Account ID = {self.account_ID}, Client ID = {self.client_ID}, Account Type = {self.account_type}, Balance = ${self.balance}, Is Active = {self.is_active})'

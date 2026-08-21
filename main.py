@@ -24,16 +24,16 @@ branch_2 = Branch(2, 'Melbourne Branch', 'Melbourne', '0401 000 123', True)
 branch_3 = Branch(3, 'Sydney Branch', 'Sydney', '0401 456 891')
 
 print(client_1)
-client_1.update_phone('0401 550 610')
+client_1.set_phone('0401 550 610')
 print(client_1)
 
 print(repr(client_2))
-client_2.update_address('Melbourne')
-client_2.update_account_status()
+client_2.set_address('Melbourne')
+client_2.set_account_status()
 print(repr(client_2))
 
 print(repr(account_3))
-account_3.update_account_status()
+account_3.set_account_status(False)
 print(repr(account_3))
 
 print(account_1)
@@ -55,5 +55,23 @@ print(branch_1)
 
 print(repr(branch_2))
 branch_2.close_branch()
-branch_2.update_phone('0406 780 908')
+branch_2.set_phone('0406 780 908')
 print(repr(branch_2))
+
+# Adding and Removing Accounts
+client_1.add_account(account_1)
+print(client_1.get_accounts())
+client_1.add_account(account_2)
+print(client_1.get_accounts())
+client_1.add_account(account_2)
+client_1.remove_account(account_2)
+print(client_1.get_accounts())
+client_1.remove_account(account_2)
+
+# Setting Client's Preferred Branch
+print(client_1.get_preferred_branch())
+client_1.set_preferred_branch(branch_1)
+print(client_1.get_preferred_branch())
+
+client_4 = Client('ID', 6, 123, 'phone', 'address')
+print(client_4)

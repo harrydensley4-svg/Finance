@@ -65,6 +65,9 @@ class Account:
         if isinstance(is_active, bool):
             self.__is_active = is_active
 
+    def get_account_status(self):
+        return self.__is_active
+
     def __str__(self):
         return f'Account ID: {self.__account_ID}, is a {self.__account_type} account with a balance of ${self.__balance}'
 

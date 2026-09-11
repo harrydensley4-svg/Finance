@@ -1,0 +1,80 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>310</x><y>710</y><w>210</w><h>90</h></coordinates><panel_attributes>SavingsAccount
+--
+- interest_rate : int
+--
++ withdraw()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>650</x><y>720</y><w>210</w><h>90</h></coordinates><panel_attributes>EverydayAccount
+--
+
+-
++ withdraw()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>610</y><w>200</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>180;10;180;80;10;80;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>680</y><w>240</w><h>60</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;220;10;220;40</additional_attributes></element><element><id>UMLClass</id><coordinates><x>450</x><y>410</y><w>230</w><h>210</h></coordinates><panel_attributes>Account
+--
+- account_ID: int
+- client_ID: int
+- account_type: str
+- balance: float
+- is_active: bool
+--
++ get_balance()
++ get_account_type()
++ withdraw(withdraw_amount: float)
++ deposit(deposit_amount: float)
++ set_account_status(is_active: bool)
++ get_account_status()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>460</x><y>90</y><w>210</w><h>250</h></coordinates><panel_attributes>Transaction
+--
+- amount: float
+- transaction_ID: int
+- transaction_type: str
+- description: str
+- account: Account
+--
++ process_transaction()
++ cancel_transaction()
++ get_description()
++ get_status()
++ get_transaction_type()
++ get_transaction_ID()
++ get_amount()
++ set_description(description: str)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>0</y><w>310</w><h>410</h></coordinates><panel_attributes>Client
+--
+- client_ID: int
+- client_name: str
+- client_email: str
+- client_phone: str
+- client_address:
+- contact_method: str
+- is_active: bool
+- accounts: List[Account]
+- preferred_branch: Branch
+--
++ client_info()
++ get_phone()
++ set_phone(client_phone: str)
++ get_email()
++ set_email(client_email: str)
++ get_address()
++ set_address(client_address: str)
++ get_account_status()
++ set_account_status(is_active: bool)
++ add_account(account: Account)
++ remove_account(account: Account)
++ get_preferred_branch()
++ set_preferred_branch(preferred_branch: Branch)
++ get_contact_method()
++ set_preferred_contact(contact_method: str)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>490</y><w>210</w><h>240</h></coordinates><panel_attributes>Branch
+--
+- number: int
+- name: str
+- location: str
+- phone: str
+- is_open: bool
+--
++ get_number()
++ get_name()
++ get_location()
++ get_phone()
++ get_is_open()
++ open_branch()
++ close_branch()
++ set_phone(phone: str)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>550</x><y>330</y><w>30</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>400</y><w>50</w><h>110</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>140</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>400</y><w>210</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;130</additional_attributes></element><element><id>Text</id><coordinates><x>410</x><y>510</y><w>100</w><h>70</h></coordinates><panel_attributes>0..*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>570</x><y>340</y><w>40</w><h>30</h></coordinates><panel_attributes>0..*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>570</x><y>420</y><w>40</w><h>30</h></coordinates><panel_attributes>1</panel_attributes><additional_attributes></additional_attributes></element></diagram>

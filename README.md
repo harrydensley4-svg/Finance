@@ -9,3 +9,8 @@ During this weeks code review, I recieved feedback around encapsulation. To impr
 
 **Week 4 Workshop (N/A)**
 - Extension Week
+
+**Week 6 Workshop (5.1)**
+- Reworked transactiona and account composition
+- Account inheritance through subclasses -> savingsaccount and everydayaccount
+- Looked at UML diagram and display for constants.

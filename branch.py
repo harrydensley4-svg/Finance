@@ -79,6 +79,12 @@ class Branch:
                 self.__phone = phone
         print(f'The Phone Number has been Updated to: {self.__phone}')
 
+    number = property(get_number, set_phone)
+    name = property(get_name)
+    location = property(get_location)
+    phone = property(get_phone)
+    is_open = property(get_is_open)
+
     def __str__(self):
         return f'Branch {self.__number} {self.__name} can be contacted by calling the number {self.__phone} or going to {self.__location}. Open? = {self.__is_open}'
 

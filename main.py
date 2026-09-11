@@ -2,6 +2,8 @@ from client import Client
 from account import Account
 from transaction import Transaction
 from branch import Branch
+from everyday_account import EverydayAccount
+from savings_account import SavingsAccount
 
 # DEMONSTRATION
 client_1 = Client(1, 'John', 'john@gmail.com', '0403 550 670',
@@ -15,9 +17,9 @@ account_1 = Account(1, 1, 'Savings', 3450, True)
 account_2 = Account(2, 2, 'Business', 103450, True)
 account_3 = Account(3, 3, 'Everyday', 682.14, True)
 
-transaction_1 = Transaction(100, 1, 'Deposit', 'New deposit', account_1)
-transaction_2 = Transaction(6780, 2, 'Deposit', 'New deposit', account_2)
-transaction_3 = Transaction(48.78, 3, 'Withdraw', 'Withdrawal', account_3)
+transaction_1 = Transaction(100, 1, 'Deposit', 'New deposit')
+transaction_2 = Transaction(6780, 2, 'Deposit', 'New deposit')
+transaction_3 = Transaction(48.78, 3, 'Withdraw', 'Withdrawal')
 
 branch_1 = Branch(1, 'Adelaide Branch', 'Adelaide', '0403 505 670')
 branch_2 = Branch(2, 'Melbourne Branch', 'Melbourne', '0401 000 123', True)
@@ -124,7 +126,7 @@ print(transaction_3.get_transaction_type())
 print(transaction_3)
 
 # Example of an object created with invalid constructor attributes.
-transaction_4 = Transaction(True, 'Ten', 'Withdraw', 'Incorrect Example', "Account 1")
+transaction_4 = Transaction(True, 'Ten', 'Withdraw', 'Incorrect Example')
 print(repr(transaction_4))
 
 # TESTING BRANCH METHODS.
@@ -153,3 +155,20 @@ print(repr(branch_3))
 # Example of an object created with invalid constructor attributes.
 branch_4 = Branch("One", "Perth Branch", 'Perth', 45067080, True)
 print(branch_4)
+
+account_4 = SavingsAccount(1, 1, 'Savings', 3450, 4, True)
+account_5 = EverydayAccount(3, 3, 'Everyday', 682.14, True)
+
+account_4.deposit(100)
+print(account_4.balance)
+print(account_4.transaction_collection)
+
+account_4.withdraw(200)
+account_4.withdraw(5000)
+
+account_5.withdraw(100)
+print(account_5.withdraw(2000))
+
+print(issubclass(SavingsAccount, Account))
+print(issubclass(EverydayAccount, Account))
+

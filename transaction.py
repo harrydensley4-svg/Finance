@@ -1,5 +1,3 @@
-from account import Account
-
 class Transaction:
     """
     A class to model transactions within an account by storing transaction information, 
@@ -15,7 +13,7 @@ class Transaction:
             Current status of the transaction is initially set to "Pending"
     """
 
-    def __init__(self, amount, transaction_ID, transaction_type, description, account):
+    def __init__(self, amount, transaction_ID, transaction_type, description):
         if isinstance(amount, (int, float)) and not isinstance(amount, bool) and amount > 0:
             self.__amount = amount
         else:
@@ -32,22 +30,19 @@ class Transaction:
             self.__description = description
         else:
             self.__description = 'No Description'
-        if isinstance(account, Account):
-            self.__account = account
-        else:
-            self.__account = 'Unknown'
         self.__status = 'Pending'
 
-    def process_transaction(self):
+    def process_transaction(self, account):
     # Processes a pending transaction by either withdrawing or depositing the specified amount into the associated account.
     # Changes the status to processed if completed successfully.
+    # TODO: rework process transaction for composition, through account.
         if self.__status == 'Pending':
             if self.__transaction_type.lower() == 'withdraw':
-                self.__account.withdraw(self.__amount)
+                account.withdraw(self.__amount)
                 self.__status = 'Processed'
                 print('Withdrawal Processed')
             elif self.__transaction_type.lower() == 'deposit':
-                self.__account.deposit(self.__amount)
+                account.deposit(self.__amount)
                 self.__status = 'Processed'
                 print('Deposit Processed')
             else:
@@ -85,6 +80,12 @@ class Transaction:
         if isinstance(description, str):    
             self.__description = description
             print(f'The description has been updated to: {self.__description}')
+
+    description = property(get_description, set_description)
+    status = property(get_status)
+    transaction_type = property(get_transaction_type)
+    transaction_ID = property(get_transaction_ID)
+    amount = property(get_amount)
 
     def __str__(self):
         return f'Transaction {self.__transaction_ID} of ${self.__amount} to be {self.__transaction_type} with description {self.__description} is {self.__status}'

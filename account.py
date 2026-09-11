@@ -1,3 +1,5 @@
+from transaction import Transaction
+
 class Account:
     """
     A class to represent a client's account by storing/providing account information, 
@@ -33,13 +35,30 @@ class Account:
         else:
             self.__is_active = True
 
+        self.__transaction_collection = []
+
+    def process_transaction(self, amount, transaction_ID, transaction_type, description):
+        transaction = Transaction(amount, transaction_ID, transaction_type, description)
+        transaction.process_transaction()
+        self.__transaction_collection.append(transaction)
+        return transaction
+
+    def find_records(self, trans_ID):
+        for transaction in self.__transaction_collection:
+            if transaction.transaction_ID == trans_ID:
+                return transaction
+        return None
+
     def get_balance(self):
     # Returns the account balance.
-        return f'${self.__balance}'
+        return self.__balance
 
     def get_account_type(self):
     # Returns the account type
         return self.__account_type
+
+    def get_transactions(self):
+        return self.__transaction_collection
 
     def withdraw(self, withdraw_amount):
     # If sufficient funds are available, it withdraws money from the account.
@@ -67,6 +86,11 @@ class Account:
 
     def get_account_status(self):
         return self.__is_active
+
+    account_type = property(get_account_type)
+    account_status = property(get_account_status, set_account_status)
+    balance = property(get_balance)
+    transaction_collection = property(get_transactions)
 
     def __str__(self):
         return f'Account ID: {self.__account_ID}, is a {self.__account_type} account with a balance of ${self.__balance}'

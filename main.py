@@ -13,9 +13,9 @@ client_2 = Client(2, 'Bill', 'bill@gmail.com',
 client_3 = Client(3, 'Harry', 'harry@gmail.com',
                   '0401 660 716', '8 North Terrace', 'Email')
 
-account_1 = Account(1, 1, 'Savings', 3450, True)
-account_2 = Account(2, 2, 'Business', 103450, True)
-account_3 = Account(3, 3, 'Everyday', 682.14, True)
+account_1 = SavingsAccount(1, 1, 'Savings', 3450, True)
+account_2 = SavingsAccount(2, 2, 'Savings', 103450, True)
+account_3 = EverydayAccount(3, 3, 'Everyday', 682.14, True)
 
 transaction_1 = Transaction(100, 1, 'Deposit', 'New deposit')
 transaction_2 = Transaction(6780, 2, 'Deposit', 'New deposit')
@@ -34,10 +34,10 @@ print(client_1.get_phone())
 print(client_1.get_account_status())
 client_1.set_email('newemail@gmail.com')
 print(client_1.get_email())
-print(client_1.get_accounts())
+print(client_1.get_all_accounts())
 client_1.add_account(account_1)
 client_1.add_account(account_2)
-print(client_1.get_accounts())
+print(client_1.get_all_accounts())
 print(client_1)
 client_1.add_account(account_1)
 client_1.remove_account(account_1)
@@ -53,7 +53,7 @@ print(client_2.get_address())
 client_2.set_address('New Address 123')
 client_2.set_phone('Banana') # Despite being a string, this should be rejected as it is not a valid phone number.
 client_2.set_account_status()
-print(client_2.get_accounts())
+print(client_2.get_all_accounts())
 print(repr(client_2))
 
 print(client_3)
@@ -102,7 +102,7 @@ print(repr(account_4))
 
 # TESTING TRANSACTION METHODS.
 print(transaction_1.get_description())
-transaction_1.process_transaction()
+transaction_1.process_transaction(account_1)
 print(transaction_1)
 transaction_1.cancel_transaction()
 print(transaction_1.get_transaction_ID())
@@ -112,7 +112,7 @@ print(repr(transaction_1))
 
 print(repr(transaction_2))
 transaction_2.cancel_transaction()
-transaction_2.process_transaction()
+transaction_2.process_transaction(account_2)
 transaction_2.set_description("I am depositing this money")
 print(transaction_2.get_amount())
 print(transaction_2.get_status())
@@ -172,3 +172,27 @@ print(account_5.withdraw(2000))
 print(issubclass(SavingsAccount, Account))
 print(issubclass(EverydayAccount, Account))
 
+
+
+
+client_5 = Client(5, 'Harry', 'hatty@gmail', '0404040', 'Home')
+client_5.add_account(account_1)
+client_5.add_account(account_2)
+client_5.add_account(account_3)
+print(client_5)
+
+client_5.find_account(3).process_transaction(10, 3, 'Deposit', 'description')
+
+print(account_3.transaction_collection)
+
+account = SavingsAccount(1, 1, 'Savings', 100, 4)
+print(account.transaction_collection)
+
+
+client_1.add_account(account_1)
+print(client_1)
+
+print(client_1.find_account(1))
+
+client_1.remove_account(1)
+client_1.find_account('a')

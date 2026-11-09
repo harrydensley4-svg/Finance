@@ -91,4 +91,4 @@ class Transaction:
         return f'Transaction {self.__transaction_ID} of ${self.__amount} to be {self.__transaction_type} with description {self.__description} is {self.__status}'
 
     def __repr__(self):
-        return f'Transaction(Amount = ${self.__amount}, Transaction ID = {self.__transaction_ID}, Transaction Type = {self.__transaction_type}, Description = {self.__description}, Account = {self.__account}, Status = {self.__status})'
+        return f'Transaction(Amount = ${self.__amount}, Transaction ID = {self.__transaction_ID}, Transaction Type = {self.__transaction_type}, Description = {self.__description}, Status = {self.__status})'

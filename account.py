@@ -1,6 +1,15 @@
 from transaction import Transaction
+from abc import ABC, abstractmethod
 
-class Account:
+class NegativeWithdrawalError(Exception):
+    def __init__(self, message = "Withdrawal amount can not be negative"):
+        super().__init__(message)
+
+class WithdrawGreaterThanBalanceError(Exception):
+    def __init__(self, message = "Can not withdraw more than account balance"):
+        super().__init__(message)
+
+class Account(ABC):
     """
     A class to represent a client's account by storing/providing account information, 
     managing the account balance through withdrawals and deposits, and managing account status.
@@ -39,7 +48,7 @@ class Account:
 
     def process_transaction(self, amount, transaction_ID, transaction_type, description):
         transaction = Transaction(amount, transaction_ID, transaction_type, description)
-        transaction.process_transaction()
+        transaction.process_transaction(self)
         self.__transaction_collection.append(transaction)
         return transaction
 
@@ -48,6 +57,15 @@ class Account:
             if transaction.transaction_ID == trans_ID:
                 return transaction
         return None
+
+    def number_of_transactions(self):
+        return len(self.__transaction_collection)
+
+    def get_account_id(self):
+        return self.__account_ID
+
+    def set_account_id(self, account_ID):
+        self.__account_ID = account_ID
 
     def get_balance(self):
     # Returns the account balance.
@@ -63,12 +81,19 @@ class Account:
     def withdraw(self, withdraw_amount):
     # If sufficient funds are available, it withdraws money from the account.
     # Parameters: withdraw_amount (int/float)
-        if isinstance(withdraw_amount, (int, float)) and not isinstance(withdraw_amount, bool):
-            if 0 < withdraw_amount <= self.__balance:
+        try:
+            if not isinstance(withdraw_amount, (int, float)) or isinstance(withdraw_amount, bool):
+                raise TypeError('Should Be a Float or an Integer')
+            if 0 > withdraw_amount:
+                raise NegativeWithdrawalError()
+            if withdraw_amount >= self.__balance:
+                raise WithdrawGreaterThanBalanceError()
+            else:
                 self.__balance -= withdraw_amount
                 print(f'New Balance: ${self.__balance}')
-            else:
-                print('Not Valid')
+        except Exception as e:
+            print(f'{e.__class__.__name__}: {e}')
+            return False
 
     def deposit(self, deposit_amount):
     # Deposits money into the account if the ammount is greater than zero
@@ -87,6 +112,7 @@ class Account:
     def get_account_status(self):
         return self.__is_active
 
+    account_id = property(get_account_id, set_account_id)
     account_type = property(get_account_type)
     account_status = property(get_account_status, set_account_status)
     balance = property(get_balance)

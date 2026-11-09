@@ -1,6 +1,10 @@
 from account import Account
 from branch import Branch
 
+class AccountNotFoundError(Exception):
+    def __init__(self, message = "This account is not found"):
+        super().__init__(message)
+
 class Client:
     """
     A class to represent a bank client by managing their personal information, 
@@ -42,7 +46,7 @@ class Client:
         else:
             self.__is_active = True
         self.set_preferred_contact(contact_method)
-        self.__accounts = []
+        self.__accounts = {}
         self.__preferred_branch = None
 
     def add_account(self, account):
@@ -56,16 +60,10 @@ class Client:
             print('Account is already assigned to this client')
             return
         
-        self.__accounts.append(account)
+        self.__accounts[account.account_id] = account
 
-    def remove_account(self, account):
-    # Removes an Account object from the clients list of accounts.
-    # Parameters: account (Account)
-        if isinstance(account, Account):
-            if account not in self.__accounts:
-                print('This account does not exist')
-            else:
-                self.__accounts.remove(account)
+    def remove_account(self, account_id):
+        return self.__accounts.pop(account_id, None)
 
     def set_preferred_branch(self, preferred_branch):
     # Sets the clients preferred bank branch.
@@ -79,7 +77,7 @@ class Client:
     # Returns the clients preferred bank branch.
         return self.__preferred_branch
     
-    def get_accounts(self):
+    def get_all_accounts(self):
     # Returns the list of accounts associated with the client. 
         return self.__accounts 
 
@@ -140,6 +138,15 @@ class Client:
             self.__is_active = True
             print('Active')
 
+    def find_account(self, account_id):
+        try:
+            if account_id not in self.__accounts:
+                raise AccountNotFoundError()
+            else:
+                return self.__accounts.get(account_id, None)
+        except Exception as e:
+            print(f'{e.__class__.__name__}: {e}')
+
     def get_contact_method(self):
     # Returns the clients preferred contact method.
         return self.__contact_method
@@ -161,7 +168,7 @@ class Client:
 
     def __str__(self):
         account_list = ''
-        for account in self.__accounts:
+        for account in self.__accounts.values():
             account_list += '- ' + str(account) + '\n'
         if len(self.__accounts) == 0:
             return f'{self.__client_name} has a phone number {self.__client_phone} and has a preferred contact method of {self.__contact_method}. No current Accounts.'

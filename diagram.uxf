@@ -1,14 +1,14 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>290</x><y>836</y><w>210</w><h>100</h></coordinates><panel_attributes>SavingsAccount
+<diagram program="umletino" version="15.1"><zoom_level>3</zoom_level><element><id>UMLClass</id><coordinates><x>252</x><y>216</y><w>63</w><h>30</h></coordinates><panel_attributes>SavingsAccount
 --
 -MIN_BALANCE = 0
 - interest_rate : int
 --
 + withdraw()
-+ get_interest_rate()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>640</x><y>846</y><w>210</w><h>70</h></coordinates><panel_attributes>EverydayAccount
++ get_interest_rate()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>357</x><y>219</y><w>63</w><h>21</h></coordinates><panel_attributes>EverydayAccount
 --
 -MAX_WITHDRAW = 1000
 -
-+ withdraw()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>756</y><w>210</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>190;10;190;70;20;70;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>816</y><w>240</w><h>50</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;220;10;220;30</additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>456</y><w>460</w><h>310</h></coordinates><panel_attributes>Account
++ withdraw()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>276</x><y>192</y><w>63</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>190;10;190;70;20;70;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>210</y><w>72</w><h>15</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;220;10;220;30</additional_attributes></element><element><id>UMLClass</id><coordinates><x>297</x><y>102</y><w>138</w><h>93</h></coordinates><panel_attributes>Account
 --
 - account_ID: int
 - client_ID: int
@@ -28,7 +28,7 @@
 + find_records(trans_ID)
 + number_of_transactions()
 + withdraw(withdraw_amount)
-+ deposit(deposit_amount)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>126</y><w>260</w><h>250</h></coordinates><panel_attributes>Transaction
++ deposit(deposit_amount)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>297</x><y>3</y><w>78</w><h>75</h></coordinates><panel_attributes>Transaction
 --
 - amount: float
 - transaction_ID: int
@@ -43,7 +43,7 @@
 + get_transaction_type()
 + get_transaction_ID()
 + get_amount()
-+ set_description(description: str)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>116</y><w>310</w><h>430</h></coordinates><panel_attributes>Client
++ set_description(description: str)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>165</x><y>0</y><w>93</w><h>129</h></coordinates><panel_attributes>Client
 --
 - client_ID: int
 - client_name: str
@@ -71,7 +71,7 @@
 + find_account(account_id: int)
 + set_preffered_contact(contact_method: str)
 + get_client_id()
-+ get_client_name()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>50</x><y>626</y><w>210</w><h>240</h></coordinates><panel_attributes>Branch
++ get_client_name()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>180</x><y>153</y><w>63</w><h>72</h></coordinates><panel_attributes>Branch
 --
 - number: int
 - name: str
@@ -86,5 +86,5 @@
 + get_is_open()
 + open_branch()
 + close_branch()
-+ set_phone(phone: str)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>366</y><w>40</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>20;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>536</y><w>50</w><h>110</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..1</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>250</x><y>536</y><w>210</w><h>150</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;130</additional_attributes></element><element><id>Text</id><coordinates><x>400</x><y>646</y><w>100</w><h>70</h></coordinates><panel_attributes>0..*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>560</x><y>376</y><w>40</w><h>30</h></coordinates><panel_attributes>0..*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>150</x><y>546</y><w>40</w><h>30</h></coordinates><panel_attributes>0..*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>270</x><y>556</y><w>100</w><h>70</h></coordinates><panel_attributes>1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>560</x><y>426</y><w>100</w><h>70</h></coordinates><panel_attributes>1</panel_attributes><additional_attributes></additional_attributes></element></diagram>
++ set_phone(phone: str)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>324</x><y>75</y><w>12</w><h>33</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>20;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>207</x><y>126</y><w>15</w><h>33</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>126</y><w>63</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;130</additional_attributes></element><element><id>Text</id><coordinates><x>285</x><y>159</y><w>30</w><h>21</h></coordinates><panel_attributes>0..*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>333</x><y>78</y><w>12</w><h>9</h></coordinates><panel_attributes>0..*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>210</x><y>129</y><w>12</w><h>9</h></coordinates><panel_attributes>0..*</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>246</x><y>132</y><w>30</w><h>21</h></coordinates><panel_attributes>1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Text</id><coordinates><x>333</x><y>93</y><w>30</w><h>21</h></coordinates><panel_attributes>1</panel_attributes><additional_attributes></additional_attributes></element></diagram>

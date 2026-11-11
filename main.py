@@ -14,9 +14,9 @@ client_2 = Client(2, 'Bill', 'bill@gmail.com',
 client_3 = Client(3, 'Harry', 'harry@gmail.com',
                   '0401 660 716', '8 North Terrace', 'Email')
 
-account_1 = SavingsAccount(1, 1, 'Savings', 3450, True)
-account_2 = SavingsAccount(2, 2, 'Savings', 103450, True)
-account_3 = EverydayAccount(3, 3, 'Everyday', 682.14, True)
+account_1 = SavingsAccount(1, 'Savings', 3450, True)
+account_2 = SavingsAccount(2, 'Savings', 103450, True)
+account_3 = EverydayAccount(3, 'Everyday', 682.14, True)
 
 transaction_1 = Transaction(100, 1, 'Deposit', 'New deposit')
 transaction_2 = Transaction(6780, 2, 'Deposit', 'New deposit')

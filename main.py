@@ -5,6 +5,7 @@ from branch import Branch
 from everyday_account import EverydayAccount
 from savings_account import SavingsAccount
 
+
 # DEMONSTRATION
 client_1 = Client(1, 'John', 'john@gmail.com', '0403 550 670',
                   '123 Adelaide Uni', 'Phone', True)
@@ -41,7 +42,6 @@ print(client_1.get_all_accounts())
 print(client_1)
 client_1.add_account(account_1)
 client_1.remove_account(account_1)
-client_1.client_info()
 print(client_1)
 
 print(repr(client_2))
@@ -52,7 +52,7 @@ print(repr(client_2))
 print(client_2.get_address())
 client_2.set_address('New Address 123')
 client_2.set_phone('Banana') # Despite being a string, this should be rejected as it is not a valid phone number.
-client_2.set_account_status()
+client_2.set_account_status(True)
 print(client_2.get_all_accounts())
 print(repr(client_2))
 
@@ -62,15 +62,11 @@ print(client_3.get_preferred_branch())
 print(client_3.get_address())
 print(client_3.get_email())
 print(client_3.get_contact_method())
-client_3.set_preferred_contact('Carrier Pigeon') # This should be rejected as it is not one of the valid contact methods.
+client_3.set_preferred_contact('Carrier Pigeon') # This should be replaced by since it is not an accepted contact method
 print(client_3.get_contact_method())
 client_3.set_preferred_contact('Phone')
 print(client_3.get_contact_method())
 print(repr(client_3))
-
-# Example of an object created with invalid constructor attributes.
-client_4 = Client('Four', 'Bob', 'bob@gmail.com', 'Phone Number', 3, 'Message in a bottle')
-print(repr(client_4))
 
 # TESTING ACCOUNT METHODS
 print(account_1)
@@ -95,10 +91,6 @@ account_3.withdraw(13.4)
 print(account_3.get_balance())
 account_3.withdraw(-3)
 print(account_3)
-
-# Example of an object created with invalid constructor attributes.
-account_4 = Account(False, True, 'Savings', 'Two hundred and fifty dollars')
-print(repr(account_4))
 
 # TESTING TRANSACTION METHODS.
 print(transaction_1.get_description())
@@ -125,10 +117,6 @@ print(transaction_3.get_transaction_ID())
 print(transaction_3.get_transaction_type())
 print(transaction_3)
 
-# Example of an object created with invalid constructor attributes.
-transaction_4 = Transaction(True, 'Ten', 'Withdraw', 'Incorrect Example')
-print(repr(transaction_4))
-
 # TESTING BRANCH METHODS.
 print(branch_1.get_is_open())
 branch_1.close_branch()
@@ -152,47 +140,14 @@ print(branch_3.get_phone())
 print(branch_3.get_location())
 print(repr(branch_3))
 
-# Example of an object created with invalid constructor attributes.
-branch_4 = Branch("One", "Perth Branch", 'Perth', 45067080, True)
-print(branch_4)
-
-account_4 = SavingsAccount(1, 1, 'Savings', 3450, 4, True)
-account_5 = EverydayAccount(3, 3, 'Everyday', 682.14, True)
-
-account_4.deposit(100)
-print(account_4.balance)
-print(account_4.transaction_collection)
-
-account_4.withdraw(200)
-account_4.withdraw(5000)
-
-account_5.withdraw(100)
-print(account_5.withdraw(2000))
-
-print(issubclass(SavingsAccount, Account))
-print(issubclass(EverydayAccount, Account))
-
-
-
-
+# Example of Account composition in Client
 client_5 = Client(5, 'Harry', 'hatty@gmail', '0404040', 'Home')
 client_5.add_account(account_1)
 client_5.add_account(account_2)
 client_5.add_account(account_3)
 print(client_5)
 
-client_5.find_account(3).process_transaction(10, 3, 'Deposit', 'description')
-
+# Processing transactions through the client instance
+print(client_5.find_account(3).process_transaction(10, 3, 'Deposit', 'description'))
 print(account_3.transaction_collection)
 
-account = SavingsAccount(1, 1, 'Savings', 100, 4)
-print(account.transaction_collection)
-
-
-client_1.add_account(account_1)
-print(client_1)
-
-print(client_1.find_account(1))
-
-client_1.remove_account(1)
-client_1.find_account('a')

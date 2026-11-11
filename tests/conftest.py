@@ -7,10 +7,6 @@ from transaction import Transaction
 import pytest
 
 @pytest.fixture
-def account():
-    return Account(1, 1, 'Savings', 100)
-
-@pytest.fixture
 def branch():
     return Branch(1, 'Adelaide', 'Adelaide', '0401660716')
 
@@ -20,12 +16,16 @@ def client():
 
 @pytest.fixture
 def everyday_account():
-    pass
+    return EverydayAccount(2, 'Everyday', 10000)
 
 @pytest.fixture
 def savings_account():
-    return SavingsAccount(1, 1, 'Savings', 100, 5)
+    return SavingsAccount(1, 'Savings', 100, 5)
 
 @pytest.fixture
-def transaction():
+def transaction1():
     return Transaction(800, 1, 'Deposit', 'Depositing Money')
+
+@pytest.fixture
+def transaction2():
+    return Transaction(800, 2, 'Withdraw', 'Withdrawing Money')
